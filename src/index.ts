@@ -39,7 +39,7 @@ async function printDepartures(quayId: string, n: number) {
         quayInfo
       )}} at {green ${formatAsTime(
         dep.expectedDepartureTime
-      )}} -> {bgCyan.black ${getLineNumber(dep.serviceJourney.line.id)}: ${
+      )}} -> {cyan ${getLineNumber(dep.serviceJourney.line.id)}: ${
         dep.destinationDisplay.frontText
       }}`
     );
