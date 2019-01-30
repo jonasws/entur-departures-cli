@@ -1,14 +1,22 @@
 #!/usr/bin/env node
 
-import * as yargs from "yargs";
-
-import { getDeparturesByQuayId, searchForQuayByName } from "entur-departures";
-import { ZonedDateTime, DateTimeFormatter } from "js-joda";
-
-import { path, identity, compose, tap, insert, join, split, last } from "ramda";
 import chalk from "chalk";
-
-const MUNKELIA_TOWARDS_CITY_CENTER = "NSR:Quay:10667";
+import { getDeparturesByQuayId, searchForQuayByName } from "entur-departures";
+import { DateTimeFormatter, ZonedDateTime } from "js-joda";
+import {
+  compose,
+  find,
+  insert,
+  join,
+  last,
+  map,
+  path,
+  prop,
+  propEq,
+  propOr,
+  split
+} from "ramda";
+import * as yargs from "yargs";
 
 const getQuayName = path<string>(["quay", "name"]);
 const getTransportMode = path<string>([
@@ -16,7 +24,23 @@ const getTransportMode = path<string>([
   "line",
   "transportMode"
 ]);
-const getLineNumber = compose<string, string[], string>(last, split(":"));
+
+const getLineNumber = compose<string, string[], string>(
+  last,
+  split(":")
+);
+
+const getSitutationsString = compose(
+  join(" | "),
+  map(
+    compose(
+      prop("value"),
+      find(propEq("language", "no")),
+      prop("description")
+    )
+  ), // Check if its "no" or "nb" (bokmål)
+  propOr([], "situations")
+);
 
 const formatAsTime = compose<string, string[], string[], string, string>(
   (dateString: string): string =>
@@ -41,7 +65,7 @@ async function printDepartures(quayId: string, n: number) {
         dep.expectedDepartureTime
       )}} -> {cyan ${getLineNumber(dep.serviceJourney.line.id)}: ${
         dep.destinationDisplay.frontText
-      }}`
+      }} {bgYellow.black ${getSitutationsString(dep)}}`
     );
   });
 }
