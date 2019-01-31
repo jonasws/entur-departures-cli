@@ -6,6 +6,8 @@ import { DateTimeFormatter, ZonedDateTime } from "js-joda";
 import {
   compose,
   find,
+  head,
+  ifElse,
   insert,
   join,
   last,
@@ -35,7 +37,11 @@ const getSitutationsString = compose(
   map(
     compose(
       prop("value"),
-      find(propEq("language", "no")),
+      ifElse(
+        find(propEq("language", "no")),
+        find(propEq("language", "no")),
+        head
+      ),
       prop("description")
     )
   ), // Check if its "no" or "nb" (bokmål)
