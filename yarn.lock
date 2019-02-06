@@ -2,16 +2,6 @@
 # yarn lockfile v1
 
 
-"@types/node-fetch@^1.6.8":
-  version "1.6.8"
-  resolved "https://registry.yarnpkg.com/@types/node-fetch/-/node-fetch-1.6.8.tgz#a59d8c75b300ddc3ca3eef23d449d677f9486c3d"
-  dependencies:
-    "@types/node" "*"
-
-"@types/node@*":
-  version "9.6.6"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-9.6.6.tgz#439b91f9caf3983cad2eef1e11f6bedcbf9431d2"
-
 "@types/ramda@^0.25.21":
   version "0.25.23"
   resolved "https://registry.yarnpkg.com/@types/ramda/-/ramda-0.25.23.tgz#c8dded270401b31683820661feecbcff40412a90"
@@ -101,9 +91,10 @@ encoding@^0.1.11:
   dependencies:
     iconv-lite "~0.4.13"
 
-entur-departures@2.1.1:
-  version "2.1.1"
-  resolved "https://registry.yarnpkg.com/entur-departures/-/entur-departures-2.1.1.tgz#534ec4e38b3c1cecfa57a1705932db66cf7ed9bf"
+entur-departures@^2.2.0:
+  version "2.2.0"
+  resolved "https://registry.yarnpkg.com/entur-departures/-/entur-departures-2.2.0.tgz#9dd7a5d69c795a8bae98a7b6ef0d73b38d52f731"
+  integrity sha512-JI99hnP7GAU5KTRhPkoWXoXICv4UzcZZ2i2xoFFcQD0yRGv0vT2mnUWtvZuBdkiD9gJ9+GMF05MHTjCfFOeYhQ==
   dependencies:
     isomorphic-fetch "^2.2.1"
     nanographql "^2.0.0"
