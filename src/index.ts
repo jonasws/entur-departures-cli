@@ -6,6 +6,10 @@ import { DateTimeFormatter, ZonedDateTime } from "js-joda";
 import {
   compose,
   find,
+  startsWith,
+  pathSatisfies,
+  filter,
+  identity,
   head,
   ifElse,
   insert,
@@ -59,9 +63,22 @@ const formatAsTime = compose<string, string[], string[], string, string>(
   split("")
 );
 
-async function printDepartures(quayId: string, n: number) {
+async function printDepartures(
+  quayId: string,
+  n: number,
+  filterString: string | null
+) {
+  const transformer = filterString
+    ? filter(
+        pathSatisfies(startsWith(filterString), [
+          "destinationDisplay",
+          "frontText"
+        ])
+      )
+    : identity;
+
   const quayInfo = await getDeparturesByQuayId(quayId, n);
-  quayInfo.quay.estimatedCalls.forEach(dep => {
+  transformer(quayInfo.quay.estimatedCalls).forEach(dep => {
     console.log(
       chalk`The {magenta ${getTransportMode(
         dep
@@ -95,9 +112,14 @@ yargs
           description: "The number of departures to list",
           default: 1,
           type: "number"
+        })
+        .option("filter", {
+          description: "Optional filter applied to destination display",
+          default: null,
+          type: "string"
         }),
-    ({ quayId, n }) => {
-      printDepartures(quayId, n).catch(err => {
+    ({ quayId, n, filter }) => {
+      printDepartures(quayId, n, filter).catch(err => {
         console.error(err);
       });
     }
