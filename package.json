@@ -24,7 +24,7 @@
   },
   "dependencies": {
     "chalk": "^2.4.0",
-    "entur-departures": "^2.2.0",
+    "entur-departures": "2.2.1",
     "js-joda": "^1.8.2",
     "ramda": "^0.25.0",
     "yargs": "^11.0.0"

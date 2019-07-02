@@ -91,10 +91,10 @@ encoding@^0.1.11:
   dependencies:
     iconv-lite "~0.4.13"
 
-entur-departures@^2.2.0:
-  version "2.2.0"
-  resolved "https://registry.yarnpkg.com/entur-departures/-/entur-departures-2.2.0.tgz#9dd7a5d69c795a8bae98a7b6ef0d73b38d52f731"
-  integrity sha512-JI99hnP7GAU5KTRhPkoWXoXICv4UzcZZ2i2xoFFcQD0yRGv0vT2mnUWtvZuBdkiD9gJ9+GMF05MHTjCfFOeYhQ==
+entur-departures@2.2.1:
+  version "2.2.1"
+  resolved "https://registry.yarnpkg.com/entur-departures/-/entur-departures-2.2.1.tgz#e8134bde66505f34e9b764cd450c47f6a52af285"
+  integrity sha512-abPit6iAK61aXh5PhrUy3Ac4dqUb8aU6z8fsCIno8/2tXkETd3RJdFxTKrewCtCvUKjrz9ShK41ERkXY02yOMQ==
   dependencies:
     isomorphic-fetch "^2.2.1"
     nanographql "^2.0.0"
